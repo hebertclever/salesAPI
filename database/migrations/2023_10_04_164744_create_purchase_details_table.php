@@ -4,14 +4,12 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreatePurchaseDetailsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::table('purchase_details', function (Blueprint $table) {
+        Schema::create('purchase_details', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('purchase_id');
             $table->unsignedBigInteger('article_id');
             $table->decimal('purchase_price', 8, 2);
@@ -20,15 +18,14 @@ return new class extends Migration
             $table->integer('current_stock');
             $table->date('production_date');
             $table->date('expiry_date');
+            $table->timestamps();
 
+            $table->foreign('article_id')->references('article_id')->on('articles')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('purchase_details');
     }
-};
+}

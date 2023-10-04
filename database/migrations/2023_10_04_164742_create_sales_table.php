@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateSalesTable extends Migration
 {
     public function up(): void
     {
@@ -19,6 +19,9 @@ return new class extends Migration
             $table->decimal('vat', 8, 2);
             $table->string('status');
             $table->timestamps();
+
+            $table->foreign('client_id')->references('client_id')->on('clients')->onDelete('cascade');
+            $table->foreign('worker_id')->references('worker_id')->on('workers')->onDelete('cascade');
         });
     }
 
@@ -26,4 +29,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('sales');
     }
-};
+}

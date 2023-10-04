@@ -18,7 +18,7 @@ class PurchaseDetailFactory extends Factory
     {
         return [
             'purchase_id' => $this->faker->numberBetween(1, 10),
-            'item_id' => $this->faker->numberBetween(1, 10),
+            'article_id' => $this->faker->numberBetween(1, 10),
             'purchase_price' => $this->faker->randomFloat(2, 1, 100),
             'sale_price' => $this->faker->randomFloat(2, 1, 150),
             'initial_stock' => $this->faker->numberBetween(10, 100),
